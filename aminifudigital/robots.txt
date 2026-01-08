@@ -1,0 +1,37 @@
+# Stop bots from crawling junk URLs
+User-agent: *
+Allow: /*/plugins/*
+Disallow: /*wp-trackback*
+Disallow: /*wp-feed*
+Disallow: /*replytocom=*
+Disallow: /*?preview=*
+Disallow: /*&preview=*
+Disallow: /*add-to-cart=*
+Disallow: /*add_to_wishlist=*
+Disallow: /*cart/*
+Disallow: /*checkout/*
+Disallow: /*my-account/*
+Disallow: /*myaccount/*
+Disallow: /dc45/*
+Disallow: /demo/*
+Disallow: /judy/*
+Disallow: /malindilands/*
+Disallow: /old-site/*
+Disallow: /richfield/*
+Disallow: /sandbox/*
+Disallow: /subscribe
+Disallow: /unique/*
+Disallow: /website-backup
+
+# Allow Ahrefs to crawl everything
+User-agent: AhrefsBot
+Allow: /
+
+# START YOAST BLOCK (Optional)
+# ---------------------------
+# Uncomment these lines if you want to use a YOAST sitemap
+# User-agent: *
+# Disallow: /wp-admin/
+# Sitemap: https://aminifudigital.co.ke/sitemap_index.xml
+# ---------------------------
+# END YOAST BLOCK

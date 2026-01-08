@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Website Design Cost Calculator Kenya | Instant Web Design Quote</title>
+  <meta name="description" content="Use our free website design cost calculator to estimate costs for your business or e-commerce site in Kenya. Get an instant quote and plan your budget.">
+  <meta name="keywords" content="free website design cost calculator, website cost calculator Kenya, web design quote, website design pricing">
+  <meta name="robots" content="index, follow">
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Open Sans', sans-serif; color: #333333; }
+    h1, h2 { color: #3697ca; }
+    h3, h4, h5 { color: #333333; }
+    a { color: #3697ca; }
+    .primary-btn { background-color: #3697ca; color: #333333; }
+    .secondary-btn { background-color: #333333; color: #ffffff; }
+    .tooltip { position: relative; }
+    .tooltip:hover:after {
+      content: attr(data-tooltip);
+      @apply absolute bg-gray-800 text-white text-sm p-2 rounded shadow-lg z-10 w-48;
+      top: -100%; left: 100%;
+    }
+    .disclaimer { border: 1px solid #e5e7eb; color: #666666; }
+    .accordion-button { transition: background-color 0.3s ease; }
+    .accordion-button:hover { background-color: #f3f4f6; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .accordion-content.open { max-height: 1000px; }
+    .chevron::after {
+      content: '▼';
+      display: inline-block;
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    .chevron.open::after { transform: rotate(180deg); }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const Header = ({ currentStep }) => (
+      <header className="fixed top-0 w-full bg-white shadow-md p-4 flex justify-between items-center z-10">
+        <img src="../wp-content/uploads/2025/12/Aminifu-digital-agency-logo-remake-sizes-L.png" alt="Aminifu Digital Agency Logo" className="h-12" />
+        <h1 className="text-xl md:text-2xl font-semibold">Free Website Design Cost Calculator (Kenya) — Get an Instant Quote Online</h1>
+        <div className="text-sm text-[#333333] font-bold">Step {currentStep}/4</div>
+      </header>
+    );
+
+    const EstimatePanel = ({ estimate, selections }) => {
+      const features = selections.websiteType === 'Landing Page' ? [
+        'Strong Call-to-Action (CTA)',
+        'Benefit-focused Copy',
+        'High-quality Visuals (Images or Video)',
+        'Social Proof (Testimonials or Reviews)',
+        'Unique Selling Proposition',
+        'Mobile Responsiveness',
+        'Fast Loading Speed',
+        'Limited Navigation',
+        'Simple Forms',
+        'Directly Addresses Objections',
+        'Trust Signals (Badges or Guarantees)',
+        'Analytics Tracking and A/B Testing',
+        ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+        selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+        selections.customisation !== 'none' ? selections.customisation : null,
+        selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+      ].filter(Boolean) : selections.websiteType && selections.websiteType !== 'E-commerce Store' && selections.websiteType !== 'Custom Web App' ? [
+        'CMS-based Website',
+        'Custom Website Design',
+        'Unlimited Number of Pages',
+        'Responsive & Mobile Optimised',
+        'Google Analytics Integration',
+        'Social Media Integration',
+        'Site Search Functionality',
+        'Audio/Podcasting/Video Support',
+        'Contact & Location Page',
+        'Contact Form with Anti-Spam',
+        'Polls/Surveys',
+        'Easy Loading & Compatible',
+        'Image Slider',
+        'Enhanced Security',
+        'SEO Ready',
+        'Image Gallery',
+        ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+        selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+        selections.customisation !== 'none' ? selections.customisation : null,
+        selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+      ].filter(Boolean) : selections.websiteType === 'E-commerce Store' ? [
+        'E-commerce Platform',
+        ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+        selections.ecommerce.copywriting ? 'Copywriting' : null,
+        selections.ecommerce.photography ? 'Photography' : null,
+        selections.customisation !== 'none' ? selections.customisation : null,
+        selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+      ].filter(Boolean) : selections.websiteType === 'Custom Web App' ? [
+        ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+        selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+        selections.customisation !== 'none' ? selections.customisation : null,
+        selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+      ].filter(Boolean) : ['None'];
+
+      return (
+        <aside className="md:sticky md:top-24 md:w-1/3 md:p-4 bg-gray-100 rounded-lg shadow mt-4 md:mt-0">
+          <h2 className="text-lg font-semibold">Your Estimate</h2>
+          <div className="mt-2 text-sm">
+            <p>{selections.websiteType || 'No type selected'}: {estimate.base}</p>
+            <p>Pages: {estimate.features}</p>
+            <p>Customisation: {estimate.customisation}</p>
+            <p>Language Support: {estimate.languageSupport}</p>
+            <p>Add-ons:</p>
+            <ul className="list-disc pl-5 text-sm text-gray-600">
+              {estimate.addons.length ? estimate.addons.map((addon, i) => (
+                <li key={i}>{addon.name}: {addon.price}</li>
+              )) : <li>None</li>}
+            </ul>
+            <p>Copywriting: {estimate.copywriting}</p>
+            <hr className="my-2" />
+            <p className="font-bold">Monthly Services: {estimate.monthly}</p>
+            <hr className="my-2" />
+            <p className="font-bold">Total (One-Time): {estimate.total}</p>
+            <hr className="my-2" />
+            <p className="text-sm font-medium">Included Features:</p>
+            <ul className="list-disc pl-5 text-sm text-gray-600">
+              {features.map((feature, i) => <li key={i}>{feature}</li>)}
+            </ul>
+          </div>
+        </aside>
+      );
+    };
+
+    const Navigation = ({ currentStep, setStep }) => (
+      <div className="mt-4 p-4 bg-white border-t flex justify-between items-center">
+        <button
+          className="px-4 py-2 secondary-btn text-white rounded disabled:opacity-50"
+          disabled={currentStep === 1}
+          onClick={() => { setStep(currentStep - 1); window.scrollTo(0, 0); }}
+        >
+          Back
+        </button>
+        <button
+          className="px-4 py-2 primary-btn text-black rounded disabled:opacity-50"
+          disabled={currentStep === 4}
+          onClick={() => { setStep(currentStep + 1); window.scrollTo(0, 0); }}
+        >
+          Next
+        </button>
+      </div>
+    );
+
+    const Footer = () => (
+      <footer className="bg-gray-800 text-white text-center p-4 mt-8">
+        <p>&copy; Aminifu Digital Agency 2025 | <a href="../index.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#3697ca]">Visit our website</a></p>
+      </footer>
+    );
+
+    const Step1 = ({ selections, setSelections }) => {
+      const handleWebsiteType = (type) => {
+        setSelections({ ...selections, websiteType: type });
+      };
+
+      return (
+        <div className="max-w-md mx-auto p-4">
+          <h2 className="text-xl font-semibold mb-4">Select Website Type</h2>
+          <p className="text-sm text-gray-600 mb-4">This step is optional. Skip if not applicable.</p>
+          <div className="space-y-4">
+            {[
+              { name: 'Landing Page', price: 'KSh 15,000 - 25,000', tooltip: 'Single-page site for promotions' },
+              { name: 'Business Website', price: 'KSh 35,000 - 50,000' },
+              { name: 'Blog', price: 'KSh 35,000 - 50,000' },
+              { name: 'Personal Website', price: 'KSh 35,000 - 50,000' },
+              { name: 'E-commerce Store', price: 'KSh 120,000 - 150,000' },
+              { name: 'Custom Web App', price: 'Custom - Contact Us' }
+            ].map((type) => (
+              <label key={type.name} className="flex items-center p-3 border rounded hover:bg-blue-50">
+                <input
+                  type="radio"
+                  name="website-type"
+                  className="mr-2"
+                  checked={selections.websiteType === type.name}
+                  onChange={() => handleWebsiteType(type.name)}
+                />
+                <span>{type.name} ({type.price})</span>
+                {type.tooltip && (
+                  <span className="ml-2 tooltip" data-tooltip={type.tooltip}>?</span>
+                )}
+              </label>
+            ))}
+          </div>
+        </div>
+      );
+    };
+
+    const Step2 = ({ selections, setSelections }) => {
+      const handlePages = (e) => {
+        setSelections({ ...selections, pages: e.target.value });
+      };
+
+      const handleCustomisation = (e) => {
+        setSelections({ ...selections, customisation: e.target.value });
+      };
+
+      const handleLanguageSupport = (e) => {
+        setSelections({ ...selections, languageSupport: e.target.value });
+      };
+
+      return (
+        <div className="max-w-md mx-auto p-4">
+          <h2 className="text-xl font-semibold mb-4">Customisation</h2>
+          <p className="text-sm text-gray-600 mb-4">This step is optional. Skip if not applicable.</p>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium">Number of Pages</label>
+              <select
+                className="w-full p-2 border rounded"
+                value={selections.pages}
+                onChange={handlePages}
+              >
+                {['1-15', '16-30', '31-45', '46-60', '61-75', '76-90', '91-105', '106-120', '121-135', '136-150', '151+'].map((range) => (
+                  <option key={range} value={range}>{range}</option>
+                ))}
+              </select>
+              <p className="text-sm text-gray-600">Selected: {selections.pages} pages</p>
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Customisation Type</label>
+              <select
+                className="w-full p-2 border rounded"
+                value={selections.customisation}
+                onChange={handleCustomisation}
+              >
+                <option value="none">None</option>
+                <option value="High End Template Website">High End Template Website (KSh 0)</option>
+                <option value="Custom Built Template">Custom Built Template (+KSh 30,000)</option>
+                <option value="Worldclass Template">Worldclass Template (+KSh 50,000)</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Language Support</label>
+              <select
+                className="w-full p-2 border rounded"
+                value={selections.languageSupport}
+                onChange={handleLanguageSupport}
+              >
+                <option value="single">Single Language (KSh 0)</option>
+                <option value="multi">Multi-language Support (+KSh 20,000)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const Step3 = ({ selections, setSelections }) => {
+      const handleAddOn = (addOn) => {
+        setSelections({
+          ...selections,
+          addOns: selections.addOns.includes(addOn)
+            ? selections.addOns.filter((item) => item !== addOn)
+            : [...selections.addOns, addOn]
+        });
+      };
+
+      const handleMonthlyService = (field, value) => {
+        setSelections({ ...selections, [field]: value });
+      };
+
+      const handleOtherRequirements = (e) => {
+        setSelections({ ...selections, otherRequirements: e.target.value });
+      };
+
+      const handleEcommerce = (field, value) => {
+        setSelections({ ...selections, ecommerce: { ...selections.ecommerce, [field]: value } });
+      };
+
+      return (
+        <div className="max-w-md mx-auto p-4">
+          <h2 className="text-xl font-semibold mb-4">Add-ons</h2>
+          <p className="text-sm text-gray-600 mb-4">This step is optional. Skip if not applicable.</p>
+          <div className="space-y-4">
+            {[
+              { name: 'E-Downloads', price: 'KSh 15,000 - 15,000' },
+              { name: 'Event Manager', price: 'KSh 40,000 - 50,000' },
+              { name: 'Live Chat', price: 'KSh 40,000 - 40,000' },
+              { name: 'Appointment Booking Integration', price: 'KSh 35,000 - 50,000' },
+              { name: 'Newsletter', price: 'KSh 0 - 15,000' },
+              { name: 'Integrated Blog', price: 'KSh 15,000 - 15,000' },
+              { name: 'Email Setup', price: 'KSh 15,000 - 25,000' },
+              { name: 'Community Features', price: 'KSh 40,000 - 80,000', tooltip: 'Includes membership, forums, etc.' },
+              { name: 'Email Marketing Integration', price: 'KSh 15,000 - 25,000', tooltip: 'CRM integration' },
+              { name: 'Social Login', price: 'KSh 25,000 - 20,000' },
+              { name: 'API Integrations', price: 'Custom', tooltip: 'Custom integrations like payment gateways' }
+            ].map((addOn) => (
+              <label key={addOn.name} className="flex items-center p-3 border rounded hover:bg-blue-50">
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  checked={selections.addOns.includes(addOn.name)}
+                  onChange={() => handleAddOn(addOn.name)}
+                />
+                <span>{addOn.name} ({addOn.price})</span>
+                {addOn.tooltip && (
+                  <span className="ml-2 tooltip" data-tooltip={addOn.tooltip}>?</span>
+                )}
+              </label>
+            ))}
+            <div>
+              <label className="block text-sm font-medium">Other Requirements</label>
+              <input
+                type="text"
+                className="w-full p-2 border rounded"
+                value={selections.otherRequirements || ''}
+                onChange={handleOtherRequirements}
+                placeholder="Describe other requirements"
+              />
+              {selections.otherRequirements && <p className="text-sm text-gray-600">This will result in custom pricing.</p>}
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Copywriting</h3>
+              <p className="text-sm text-gray-600 mb-2">Professional content writing from scratch</p>
+              <p className="text-sm text-gray-600 mb-4">This section is optional.</p>
+              <div>
+                <label className="block text-sm font-medium">Number of Copywrited Pages</label>
+                <select
+                  className="w-full p-2 border rounded"
+                  value={selections.copywritingPages}
+                  onChange={(e) => setSelections({ ...selections, copywritingPages: e.target.value })}
+                >
+                  <option value="none">None</option>
+                  <option value="up to 20">Up to 20 copywrited pages</option>
+                  <option value="20-50">20-50 copywrited pages</option>
+                  <option value="50+">50+ copywrited pages</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">Monthly Services</h3>
+              <p className="text-sm text-gray-600 mb-2">These are recurring monthly costs.</p>
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">SEO Optimisation</label>
+                <select
+                  className="w-full p-2 border rounded"
+                  value={selections.seo}
+                  onChange={(e) => handleMonthlyService('seo', e.target.value)}
+                >
+                  <option value="none">None</option>
+                  <option value="basic">Basic (KSh 35,000/month)</option>
+                  <option value="standard">Standard (KSh 75,000/month)</option>
+                  <option value="enterprise">Enterprise (KSh 150,000/month)</option>
+                </select>
+                <label className="block text-sm font-medium">Monthly Website Maintenance Service</label>
+                <select
+                  className="w-full p-2 border rounded"
+                  value={selections.maintenance}
+                  onChange={(e) => handleMonthlyService('maintenance', e.target.value)}
+                >
+                  <option value="none">None</option>
+                  <option value="1 update per month">1 update per month (KSh 10,000)</option>
+                  <option value="2 updates per month">2 updates per month (KSh 15,000)</option>
+                  <option value="Weekly updates">Weekly updates (KSh 25,000)</option>
+                  <option value="ad hoc">Ad Hoc (Custom)</option>
+                </select>
+              </div>
+            </div>
+            {selections.websiteType === 'E-commerce Store' && (
+              <div>
+                <h3 className="text-lg font-semibold">E-commerce Options</h3>
+                <p className="text-sm text-gray-600 mb-4">This section is optional.</p>
+                <div>
+                  <label className="block text-sm font-medium">Number of Products</label>
+                  <select
+                    className="w-full p-2 border rounded"
+                    value={selections.ecommerce.products}
+                    onChange={(e) => handleEcommerce('products', e.target.value)}
+                  >
+                    <option value="0-50">0-50 Products</option>
+                    <option value="50-200">50-200 Products</option>
+                  </select>
+                </div>
+                <label className="flex items-center p-3 border rounded hover:bg-blue-50">
+                  <input
+                    type="checkbox"
+                    className="mr-2"
+                    checked={selections.ecommerce.copywriting}
+                    onChange={() => handleEcommerce('copywriting', !selections.ecommerce.copywriting)}
+                  />
+                  <span>Copywriting ({selections.ecommerce.products === '0-50' ? 'KSh 30,000 - 50,000' : 'KSh 50,000 - 100,000'})</span>
+                </label>
+                <label className="flex items-center p-3 border rounded hover:bg-blue-50">
+                  <input
+                    type="checkbox"
+                    className="mr-2"
+                    checked={selections.ecommerce.photography}
+                    onChange={() => handleEcommerce('photography', !selections.ecommerce.photography)}
+                  />
+                  <span>Photography ({selections.ecommerce.products === '0-50' ? 'KSh 50,000' : 'KSh 130,000'})</span>
+                </label>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    const Step4 = ({ estimate, selections }) => {
+      const features = selections.websiteType === 'Landing Page' ? [
+        'Strong Call-to-Action (CTA)',
+        'Benefit-focused Copy',
+        'High-quality Visuals (Images or Video)',
+        'Social Proof (Testimonials or Reviews)',
+        'Unique Selling Proposition',
+        'Mobile Responsiveness',
+        'Fast Loading Speed',
+        'Limited Navigation',
+        'Simple Forms',
+        'Directly Addresses Objections',
+        'Trust Signals (Badges or Guarantees)',
+        'Analytics Tracking and A/B Testing',
+        ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+        selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+        selections.customisation !== 'none' ? selections.customisation : null,
+        selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+      ].filter(Boolean) : selections.websiteType && selections.websiteType !== 'E-commerce Store' && selections.websiteType !== 'Custom Web App' ? [
+        'CMS-based Website',
+        'Custom Website Design',
+        'Unlimited Number of Pages',
+        'Responsive & Mobile Optimised',
+        'Google Analytics Integration',
+        'Social Media Integration',
+        'Site Search Functionality',
+        'Audio/Podcasting/Video Support',
+        'Contact & Location Page',
+        'Contact Form with Anti-Spam',
+        'Polls/Surveys',
+        'Easy Loading & Compatible',
+        'Image Slider',
+        'Enhanced Security',
+        'SEO Ready',
+        'Image Gallery',
+        ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+        selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+        selections.customisation !== 'none' ? selections.customisation : null,
+        selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+      ].filter(Boolean) : selections.websiteType === 'E-commerce Store' ? [
+        'E-commerce Platform',
+        ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+        selections.ecommerce.copywriting ? 'Copywriting' : null,
+        selections.ecommerce.photography ? 'Photography' : null,
+        selections.customisation !== 'none' ? selections.customisation : null,
+        selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+      ].filter(Boolean) : selections.websiteType === 'Custom Web App' ? [
+        ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+        selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+        selections.customisation !== 'none' ? selections.customisation : null,
+        selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+      ].filter(Boolean) : ['None'];
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          businessName: formData.get('businessName'),
+          projectDescription: formData.get('projectDescription'),
+          privacy: formData.get('privacy'),
+          estimate: {
+            websiteType: estimate.websiteType,
+            base: estimate.base,
+            features: estimate.features,
+            customisation: estimate.customisation,
+            languageSupport: estimate.languageSupport,
+            addons: estimate.addons,
+            copywriting: estimate.copywriting,
+            monthly: estimate.monthly,
+            total: estimate.total
+          },
+          features: features.join('\n')
+        };
+        if (!data.name || !data.email || !data.phone || !data.businessName || !data.privacy) {
+          alert('Please fill all required fields and agree to the Privacy Policy.');
+          return;
+        }
+        if (!/^\S+@\S+\.\S+$/.test(data.email)) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+        try {
+          const response = await fetch('https://formspree.io/f/xovkpdzz', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const result = await response.json();
+          if (response.ok) {
+            alert(result.message || 'Quote emailed successfully!');
+          } else {
+            alert(result.error || 'Error sending quote. Please try again.');
+          }
+        } catch (error) {
+          alert('Network error. Please try again.');
+        }
+      };
+    //Generate PDF
+      const generatePDF = () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'mm', 'a4');
+
+    const logoUrl = 'https://aminifudigital.co.ke/wp-content/uploads/2025/12/Aminifu-digital-agency-logo-remake-sizes-L.png';
+
+    // Load logo (callback-based)
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = logoUrl;
+    img.onload = () => {
+      doc.addImage(img, 'PNG', 15, 10, 60, 20); // Position and size
+
+      doc.setFontSize(20);
+      doc.setTextColor('#3697ca');
+      doc.text('Your Website Design Quote', 105, 25, { align: 'center' });
+
+      doc.setFontSize(12);
+      doc.setTextColor('#333333');
+
+      let y = 45;
+
+      // Cost Breakdown Table
+      const tableData = [
+        ['Website Type', estimate.websiteType || 'Base'],
+        ['Base Cost', estimate.base],
+        ['Pages', estimate.features],
+        ['Customisation', estimate.customisation],
+        ['Language Support', estimate.languageSupport],
+        ['Add-ons', estimate.addons.length ? estimate.addons.map(a => `${a.name}: ${a.price}`).join('\n') : 'None'],
+        ['Copywriting', estimate.copywriting],
+        ['Monthly Services', estimate.monthly],
+        ['Total (One-Time)', estimate.total],
+      ];
+
+      doc.autoTable({
+        startY: y,
+        head: [['Item', 'Cost']],
+        body: tableData,
+        theme: 'grid',
+        styles: { fontSize: 10, cellPadding: 3 },
+        headStyles: { fillColor: '#3697ca', textColor: '#333333', fontStyle: 'bold' },
+        columnStyles: { 0: { fontStyle: 'bold' } },
+        margin: { left: 15, right: 15 },
+      });
+
+      y = doc.lastAutoTable.finalY + 15;
+
+      // Included Features
+      const features = selections.websiteType === 'Landing Page' ? [
+  'Strong Call-to-Action (CTA)',
+  'Benefit-focused Copy',
+  'High-quality Visuals (Images or Video)',
+  'Social Proof (Testimonials or Reviews)',
+  'Unique Selling Proposition',
+  'Mobile Responsiveness',
+  'Fast Loading Speed',
+  'Limited Navigation',
+  'Simple Forms',
+  'Directly Addresses Objections',
+  'Trust Signals (Badges or Guarantees)',
+  'Analytics Tracking and A/B Testing',
+  ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+  selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+  selections.customisation !== 'none' ? selections.customisation : null,
+  selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+].filter(Boolean) : selections.websiteType && selections.websiteType !== 'E-commerce Store' && selections.websiteType !== 'Custom Web App' ? [
+  'CMS-based Website',
+  'Custom Website Design',
+  'Unlimited Number of Pages',
+  'Responsive & Mobile Optimised',
+  'Google Analytics Integration',
+  'Social Media Integration',
+  'Site Search Functionality',
+  'Audio/Podcasting/Video Support',
+  'Contact & Location Page',
+  'Contact Form with Anti-Spam',
+  'Polls/Surveys',
+  'Easy Loading & Compatible',
+  'Image Slider',
+  'Enhanced Security',
+  'SEO Ready',
+  'Image Gallery',
+  ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+  selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+  selections.customisation !== 'none' ? selections.customisation : null,
+  selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+].filter(Boolean) : selections.websiteType === 'E-commerce Store' ? [
+  'E-commerce Platform',
+  ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+  selections.ecommerce.copywriting ? 'Copywriting' : null,
+  selections.ecommerce.photography ? 'Photography' : null,
+  selections.customisation !== 'none' ? selections.customisation : null,
+  selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+].filter(Boolean) : selections.websiteType === 'Custom Web App' ? [
+  ...selections.addOns.filter(addOn => !['SEO Optimisation', 'API Integrations', 'Other Requirements'].includes(addOn)),
+  selections.copywritingPages !== 'none' ? 'Copywriting' : null,
+  selections.customisation !== 'none' ? selections.customisation : null,
+  selections.languageSupport === 'multi' ? 'Multi-language Support' : null
+].filter(Boolean) : ['None'];
+
+      doc.setFontSize(14);
+      doc.text('Included Features:', 15, y);
+      y += 8;
+
+      doc.setFontSize(10);
+      const featureLines = doc.splitTextToSize(features.join(', '), 180);
+      doc.text(featureLines, 15, y);
+      y += featureLines.length * 5 + 15;
+
+      // Footer contacts
+      doc.setFontSize(10);
+      doc.setTextColor('#666666');
+      doc.text('Aminifu Digital Agency', 105, y, { align: 'center' });
+      doc.text('Website: www.aminifudigital.co.ke', 105, y + 6, { align: 'center' });
+      doc.text('Email: info@aminifudigital.co.ke', 105, y + 12, { align: 'center' });
+      doc.text('Phone: +254 747 728 343', 105, y + 18, { align: 'center' });
+
+      doc.save('website-quote-Aminifu-digital-agency.pdf');
+    };
+  };
+  //End Generate PDF
+      return (
+        <div className="max-w-md mx-auto p-4">
+          <h2 className="text-xl font-semibold mb-4">Your Details & Estimate are ready</h2>
+          <p className="text-sm text-gray-600 mb-4">Select one option below to proceed</p>
+          
+          
+          
+          <div className="mt-8 flex flex-col md:flex-row justify-center gap-6">
+  <button
+    type="button"
+    onClick={generatePDF}
+    className="px-8 py-4 primary-btn text-black rounded-lg hover:bg-yellow-400 transition text-lg font-semibold shadow-lg"
+  >
+    Download Quote as PDF
+  </button>
+
+  <a
+    href="https://calendly.com/Aminifuaminifudigital/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-8 py-4 secondary-btn text-white rounded-lg hover:bg-gray-700 transition text-lg font-semibold text-center shadow-lg block md:inline-block"
+  >
+    Book Consultation
+  </a>
+</div>
+
+<p className="text-sm text-gray-600 mt-6 text-center">
+  Your personalised quote will be downloaded instantly. For any questions or to discuss your project, book a free consultation.
+</p>
+          
+          
+          
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold">Cost Breakdown</h3>
+            <table className="w-full text-sm">
+              <tbody>
+                <tr><td>{estimate.websiteType || 'Base'}:</td><td>{estimate.base}</td></tr>
+                <tr><td>Pages:</td><td>{estimate.features}</td></tr>
+                <tr><td>Customisation:</td><td>{estimate.customisation}</td></tr>
+                <tr><td>Language Support:</td><td>{estimate.languageSupport}</td></tr>
+                <tr><td>Add-ons:</td><td>
+                  <ul className="list-disc pl-5">
+                    {estimate.addons.length ? estimate.addons.map((addon, i) => (
+                      <li key={i}>{addon.name}: {addon.price}</li>
+                    )) : <li>None</li>}
+                  </ul>
+                </td></tr>
+                <tr><td>Copywriting:</td><td>{estimate.copywriting}</td></tr>
+                <tr><td className="font-bold">Monthly Services:</td><td className="font-bold">{estimate.monthly}</td></tr>
+                <tr><td className="font-bold">Total (One-Time):</td><td className="font-bold">{estimate.total}</td></tr>
+              </tbody>
+            </table>
+            <hr className="my-2" />
+            <p className="text-sm font-medium">Included Features:</p>
+            <ul className="list-disc pl-5 text-sm text-gray-600">
+              {features.map((feature, i) => <li key={i}>{feature}</li>)}
+            </ul>
+          </div>
+        </div>
+      );
+    };
+
+    const FAQs = () => {
+      const [openIndex, setOpenIndex] = React.useState(null);
+
+      const faqs = [
+        {
+          question: 'How much does a website cost in Kenya?',
+          answer: 'The cost of a website in Kenya depends on several factors such as the number of pages, type of website (business, e-commerce, blog, portal), required features, level of design customisation and SEO setup. On average, a simple business website can cost between KES 35,000 and KES 100,000, while complex e-commerce sites can range from KES 120,000 to over KES 500,000. Use the calculator above to get a quick, tailored estimate.'
+        },
+        {
+          question: 'How accurate is this website cost calculator?',
+          answer: 'This calculator is designed to give you a realistic estimate based on current market rates and the services you select. Actual costs may vary depending on your specific project scope, integrations, and timelines. After using the tool, our team can provide a precise quotation during a consultation.'
+        },
+        {
+          question: 'What factors affect website design pricing?',
+          answer: 'Website pricing is influenced by several key elements, including:\n- Type of website (business, e-commerce, blog, portal)\n- Number of pages and content volume\n- Custom design requirements\n- Functionality and integrations (e.g., payment gateways, booking systems)\n- SEO and marketing setup\n- Maintenance and hosting needs\nThese factors determine how complex and resource-intensive your project will be.'
+        },
+        {
+          question: 'How do I calculate the cost of a website?',
+          answer: 'The easiest way to calculate website cost is to use a website design cost calculator like the one above. Select the services and features you need, and the tool will generate an estimated cost instantly. This helps you plan your budget before requesting a custom quotation.'
+        },
+        {
+          question: 'What is included in a typical website design package?',
+          answer: 'A standard website design package usually includes:\n- Custom website design and layout\n- Domain setup and hosting guidance\n- Basic on-page SEO\n- Mobile responsiveness\n- Contact forms and basic integrations\n- Training on how to manage the site\nOptional add-ons like e-commerce functionality, advanced SEO, content creation and marketing are available at an extra cost.'
+        },
+        {
+          question: 'How long does it take to design and build a website?',
+          answer: 'A basic website typically takes 2–4 weeks, while larger e-commerce or custom sites may take 6–12 weeks depending on the complexity, number of revisions and responsiveness during the content collection process.'
+        },
+        {
+          question: 'Is it cheaper to build a website yourself or hire a professional?',
+          answer: 'DIY website builders may appear cheaper upfront, but they often lack flexibility, SEO optimisation, and scalability. Hiring a professional agency gives you a custom, mobile-friendly, SEO-ready website that’s built to grow with your business. Over time, this usually delivers a better return on investment.'
+        },
+        {
+          question: 'Can I get an exact quotation after using the calculator?',
+          answer: 'Yes. Once you’ve generated your estimate, you can contact our team to discuss your goals in detail. We’ll refine the scope and provide a tailored quotation that reflects your specific requirements.'
+        },
+        {
+          question: 'Do you offer e-commerce website cost estimates?',
+          answer: 'Yes. The calculator includes options for e-commerce functionality, such as product listings, payment gateway integrations, and shipping configurations. You can select these features to see how they affect the overall cost.'
+        },
+        {
+          question: 'How can I reduce the cost of building a website?',
+          answer: 'You can reduce costs by:\n- Starting with a simple version (MVP) and scaling over time\n- Providing your own content and images\n- Using existing branding instead of a full redesign\n- Prioritising essential features first and adding extras later\nThe calculator allows you to experiment with different options to see how each decision affects your budget.'
+        },
+        {
+          question: 'Do you provide ongoing website maintenance?',
+          answer: 'Yes. We offer ongoing website maintenance and support packages to keep your site secure, updated, and performing well. These can be added as monthly retainers or project-based services.'
+        },
+        {
+          question: 'Can this calculator work for both small businesses and large organisations?',
+          answer: 'Absolutely. Whether you’re a start-up, SME, NGO or large enterprise, the calculator adjusts to your selections, making it useful for both simple and complex website projects.'
+        },
+        {
+          question: 'Is this calculator free to use?',
+          answer: 'Yes, the Website Design Cost Calculator is 100% free to use. You can adjust your options as many times as you like to explore different cost scenarios before speaking to our team.'
+        },
+        {
+          question: 'Do you offer website design services outside Kenya?',
+          answer: 'Yes. While we’re based in Kenya, we work with clients across Africa, Europe, and beyond. The calculator can give you a ballpark estimate, and we can provide location-specific quotations on request.'
+        },
+        {
+          question: 'What’s the next step after I use the calculator?',
+          answer: 'Once you’ve estimated your cost, the best next step is to book a free consultation with our team. We’ll review your goals, suggest the best solutions for your budget, and provide a clear project timeline.'
+        }
+      ];
+
+      const toggleFAQ = (index) => {
+        setOpenIndex(openIndex === index ? null : index);
+      };
+
+      return (
+        <div className="max-w-3xl mx-auto p-4 mt-8">
+          <p className="text-base text-gray-600 mb-8">
+            Use our free website design cost calculator to get an instant estimate for your next project. Whether you need a simple business site or a full e-commerce platform, this tool helps you plan your budget in minutes. Select the services you need, adjust your options, and download a detailed estimate — no commitment required. For a detailed breakdown of what’s included in our packages, visit our <a href="../index.html@p=990.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-400">Website Design Services</a> page. Once you’ve generated your estimate, <a href="../index.html@p=53.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow-400">contact our team</a> to get a tailored quotation and project plan.
+          </p>
+          <h2 className="text-xl font-semibold mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="border rounded">
+                <button
+                  className={`accordion-button w-full text-left p-4 font-semibold text-black ${openIndex === index ? 'chevron open' : 'chevron'}`}
+                  onClick={() => toggleFAQ(index)}
+                  aria-expanded={openIndex === index}
+                >
+                  {faq.question}
+                </button>
+                <div className={`accordion-content ${openIndex === index ? 'open' : ''} p-4 text-sm text-gray-700`}>
+                  {faq.answer.split('\n').map((line, i) => (
+                    <p key={i}>{line.startsWith('- ') ? <span>&bull; {line.slice(2)}</span> : line}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    };
+
+    const App = () => {
+      const [currentStep, setStep] = React.useState(1);
+      const [selections, setSelections] = React.useState({
+        websiteType: '',
+        pages: '1-15',
+        customisation: 'none',
+        languageSupport: 'single',
+        addOns: [],
+        seo: 'none',
+        maintenance: 'none',
+        otherRequirements: '',
+        ecommerce: { products: '0-50', copywriting: false, photography: false },
+        copywritingPages: 'none'
+      });
+
+      const calculateEstimate = () => {
+        let base = 'KSh 0';
+        let features = 'KSh 0';
+        let customisation = 'KSh 0';
+        let languageSupport = 'KSh 0';
+        let addons = [];
+        let copywriting = 'KSh 0';
+        let monthly = 'KSh 0';
+        let total = 'KSh 0';
+        let isOneTimeCustom = false;
+        let isMonthlyCustom = false;
+        const websiteType = selections.websiteType || 'No type selected';
+
+        // Base pricing
+        if (selections.websiteType === 'Landing Page') {
+          base = 'KSh 15,000 - 25,000';
+        } else if (selections.websiteType === 'Custom Web App') {
+          base = 'Custom - Contact Us';
+          isOneTimeCustom = true;
+        } else if (selections.websiteType === 'E-commerce Store') {
+          if (selections.ecommerce.products === '0-50') {
+            base = selections.ecommerce.copywriting ? 'KSh 150,000 - 200,000' : 'KSh 120,000 - 150,000';
+            if (selections.ecommerce.copywriting) {
+              addons.push({ name: 'Copywriting', price: 'KSh 30,000 - 50,000' });
+              copywriting = 'KSh 30,000 - 50,000';
+            }
+            if (selections.ecommerce.photography) {
+              addons.push({ name: 'Photography', price: 'KSh 50,000' });
+            }
+          } else {
+            base = selections.ecommerce.copywriting ? 'KSh 200,000 - 300,000' : 'KSh 150,000 - 200,000';
+            if (selections.ecommerce.copywriting) {
+              addons.push({ name: 'Copywriting', price: 'KSh 50,000 - 100,000' });
+              copywriting = 'KSh 50,000 - 100,000';
+            }
+            if (selections.ecommerce.photography) {
+              addons.push({ name: 'Photography', price: 'KSh 130,000' });
+            }
+          }
+        } else if (selections.websiteType) {
+          const advancedAddOns = [
+            'E-Downloads', 'Event Manager', 'Live Chat', 'Appointment Booking Integration',
+            'Newsletter', 'Integrated Blog', 'Email Setup', 'Community Features',
+            'Email Marketing Integration', 'Social Login'
+          ];
+          const hasAdvanced = selections.addOns.some(addOn => advancedAddOns.includes(addOn));
+          if (hasAdvanced) {
+            const addOnPrices = {
+              'E-Downloads': [50000, 65000],
+              'Event Manager': [75000, 100000],
+              'Live Chat': [75000, 90000],
+              'Appointment Booking Integration': [70000, 100000],
+              'Newsletter': [35000, 50000],
+              'Integrated Blog': [50000, 65000],
+              'Email Setup': [50000, 60000],
+              'Community Features': [75000, 130000],
+              'Email Marketing Integration': [50000, 75000],
+              'Social Login': [60000, 70000]
+            };
+            const addOnCosts = {
+              'E-Downloads': 'KSh 15,000 - 15,000',
+              'Event Manager': 'KSh 40,000 - 50,000',
+              'Live Chat': 'KSh 40,000 - 40,000',
+              'Appointment Booking Integration': 'KSh 35,000 - 50,000',
+              'Newsletter': 'KSh 0 - 15,000',
+              'Integrated Blog': 'KSh 15,000 - 15,000',
+              'Email Setup': 'KSh 15,000 - 25,000',
+              'Community Features': 'KSh 40,000 - 80,000',
+              'Email Marketing Integration': 'KSh 15,000 - 25,000',
+              'Social Login': 'KSh 25,000 - 20,000'
+            };
+            const firstAdvanced = selections.addOns.find(addOn => advancedAddOns.includes(addOn));
+            base = addOnPrices[firstAdvanced] ? `KSh ${addOnPrices[firstAdvanced][0].toLocaleString()} - ${addOnPrices[firstAdvanced][1].toLocaleString()}` : 'KSh 35,000 - 50,000';
+            selections.addOns.forEach(addOn => {
+              if (advancedAddOns.includes(addOn)) {
+                addons.push({ name: addOn, price: addOnCosts[addOn] });
+              }
+            });
+          } else {
+            base = 'KSh 35,000 - 50,000';
+          }
+        }
+
+        // Pages extra
+        if (selections.pages !== '1-15' && selections.websiteType !== 'E-commerce Store' && selections.websiteType !== 'Landing Page') {
+          if (selections.pages === '151+') {
+            features = 'Custom - Contact Us';
+            isOneTimeCustom = true;
+          } else {
+            const pageIndex = ['1-15', '16-30', '31-45', '46-60', '61-75', '76-90', '91-105', '106-120', '121-135', '136-150'].indexOf(selections.pages);
+            const extraMin = pageIndex * 10000;
+            const extraMax = pageIndex * 10000;
+            features = `KSh ${extraMin.toLocaleString()} - ${extraMax.toLocaleString()}`;
+          }
+        }
+
+        // Customisation
+        if (selections.customisation !== 'none') {
+          const customCosts = {
+            'High End Template Website': [0, 0],
+            'Custom Built Template': [30000, 30000],
+            'Worldclass Template': [50000, 50000]
+          };
+          const cost = customCosts[selections.customisation];
+          customisation = cost[0] === 0 ? 'KSh 0' : `KSh ${cost[0].toLocaleString()}`;
+          if (cost[0] > 0) {
+            addons.push({ name: selections.customisation, price: customisation });
+          }
+        }
+
+        // Language Support
+        if (selections.languageSupport === 'multi') {
+          languageSupport = 'KSh 20,000';
+          addons.push({ name: 'Multi-language Support', price: languageSupport });
+        } else {
+          languageSupport = 'KSh 0';
+        }
+
+        // Other requirements
+        if (selections.otherRequirements) {
+          addons.push({ name: 'Other Requirements', price: 'Custom' });
+          isOneTimeCustom = true;
+        }
+        if (selections.addOns.includes('API Integrations')) {
+          addons.push({ name: 'API Integrations', price: 'Custom' });
+          isOneTimeCustom = true;
+        }
+
+        // Copywriting for non-E-commerce
+        if (selections.copywritingPages !== 'none' && selections.websiteType !== 'E-commerce Store') {
+          if (selections.copywritingPages === 'up to 20') {
+            copywriting = 'KSh 30,000 - 30,000';
+            addons.push({ name: 'Copywriting (Up to 20 copywrited pages)', price: copywriting });
+          } else if (selections.copywritingPages === '20-50') {
+            copywriting = 'KSh 45,000 - 100,000';
+            addons.push({ name: 'Copywriting (20-50 copywrited pages)', price: copywriting });
+          } else {
+            copywriting = 'Custom';
+            addons.push({ name: 'Copywriting (50+ copywrited pages)', price: copywriting });
+            isOneTimeCustom = true;
+          }
+        }
+
+        // Monthly services
+        let monthlyMin = 0;
+        let monthlyMax = 0;
+        if (selections.seo !== 'none') {
+          const seoCosts = {
+            'basic': 35000,
+            'standard': 75000,
+            'enterprise': 150000
+          };
+          addons.push({ name: `SEO Optimisation (${selections.seo})`, price: `KSh ${seoCosts[selections.seo].toLocaleString()}/month` });
+          monthlyMin += seoCosts[selections.seo];
+          monthlyMax += seoCosts[selections.seo];
+        }
+        if (selections.maintenance !== 'none') {
+          const maintCosts = {
+            '1 update per month': 10000,
+            '2 updates per month': 15000,
+            'Weekly updates': 25000,
+            'ad hoc': 'Custom'
+          };
+          const maintPrice = maintCosts[selections.maintenance];
+          addons.push({ name: `Monthly Website Maintenance Service (${selections.maintenance})`, price: maintPrice === 'Custom' ? 'Custom' : `KSh ${maintPrice.toLocaleString()}/month` });
+          if (maintPrice === 'Custom') {
+            isMonthlyCustom = true;
+          } else {
+            monthlyMin += maintPrice;
+            monthlyMax += maintPrice;
+          }
+        }
+        monthly = isMonthlyCustom ? 'Custom' : (monthlyMin === 0 && monthlyMax === 0 ? 'KSh 0' : `KSh ${monthlyMin.toLocaleString()}${monthlyMax > monthlyMin ? ' - ' + monthlyMax.toLocaleString() : ''}/month`);
+
+        // Total (One-Time)
+        if (isOneTimeCustom) {
+          total = 'Custom - Contact Us';
+        } else {
+          let totalMin = 0;
+          let totalMax = 0;
+          if (selections.websiteType === 'E-commerce Store') {
+            const baseRange = base.replace('KSh ', '').split(' - ').map(v => parseInt(v.replace(',', '')));
+            totalMin = baseRange[0];
+            totalMax = baseRange[1];
+          } else if (selections.addOns.some(addOn => [
+            'E-Downloads', 'Event Manager', 'Live Chat', 'Appointment Booking Integration',
+            'Newsletter', 'Integrated Blog', 'Email Setup', 'Community Features',
+            'Email Marketing Integration', 'Social Login'
+          ].includes(addOn))) {
+            const addOnPrices = {
+              'E-Downloads': [50000, 65000],
+              'Event Manager': [75000, 100000],
+              'Live Chat': [75000, 90000],
+              'Appointment Booking Integration': [70000, 100000],
+              'Newsletter': [35000, 50000],
+              'Integrated Blog': [50000, 65000],
+              'Email Setup': [50000, 60000],
+              'Community Features': [75000, 130000],
+              'Email Marketing Integration': [50000, 75000],
+              'Social Login': [60000, 70000]
+            };
+            const firstAdvanced = selections.addOns.find(addOn => addOnPrices[addOn]);
+            totalMin = addOnPrices[firstAdvanced][0];
+            totalMax = addOnPrices[firstAdvanced][1];
+            selections.addOns.forEach(addOn => {
+              if (addOn !== firstAdvanced && addOnPrices[addOn]) {
+                totalMin += addOnPrices[addOn][0] - 35000;
+                totalMax += addOnPrices[addOn][1] - 50000;
+              }
+            });
+          } else {
+            totalMin = 35000;
+            totalMax = 50000;
+          }
+
+          // Add pages extra
+          if (features !== 'KSh 0') {
+            const featureRange = features.replace('KSh ', '').split(' - ').map(v => parseInt(v.replace(',', '')));
+            totalMin += featureRange[0];
+            totalMax += featureRange[1];
+          }
+
+          // Add customisation
+          if (selections.customisation !== 'none') {
+            const customCosts = {
+              'High End Template Website': [0, 0],
+              'Custom Built Template': [30000, 30000],
+              'Worldclass Template': [50000, 50000]
+            };
+            totalMin += customCosts[selections.customisation][0];
+            totalMax += customCosts[selections.customisation][1];
+          }
+
+          // Add language support
+          if (selections.languageSupport === 'multi') {
+            totalMin += 20000;
+            totalMax += 20000;
+          }
+
+          // Add copywriting
+          if (selections.copywritingPages !== 'none' && selections.websiteType !== 'E-commerce Store') {
+            if (selections.copywritingPages === 'up to 20') {
+              totalMin += 30000;
+              totalMax += 30000;
+            } else if (selections.copywritingPages === '20-50') {
+              totalMin += 45000;
+              totalMax += 100000;
+            }
+          }
+
+          total = `KSh ${totalMin.toLocaleString()} - ${totalMax.toLocaleString()}`;
+        }
+
+        return { websiteType, base, features, customisation, languageSupport, addons, copywriting, monthly, total };
+      };
+
+      const estimate = calculateEstimate();
+
+      return (
+        <div className="min-h-screen bg-gray-50 pt-20">
+          <Header currentStep={currentStep} />
+          <main className="container mx-auto p-4 flex flex-col md:flex-row">
+            <div className="md:w-2/3">
+              {currentStep === 1 && <Step1 selections={selections} setSelections={setSelections} />}
+              {currentStep === 2 && <Step2 selections={selections} setSelections={setSelections} />}
+              {currentStep === 3 && <Step3 selections={selections} setSelections={setSelections} />}
+              {currentStep === 4 && <Step4 estimate={estimate} selections={selections} />}
+              <Navigation currentStep={currentStep} setStep={setStep} />
+              <div className="disclaimer max-w-3xl mx-auto text-center text-sm p-4 mt-8 border rounded">
+                This free website design cost calculator is designed to give you an estimated cost based on your selected services. Final pricing may vary depending on your specific requirements and project scope. We’d be happy to discuss your goals in detail and provide a solution that meets your needs.
+              </div>
+              <FAQs />
+            </div>
+            <EstimatePanel estimate={estimate} selections={selections} />
+          </main>
+          <Footer />
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
