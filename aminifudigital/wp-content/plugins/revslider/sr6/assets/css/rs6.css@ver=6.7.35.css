@@ -692,14 +692,14 @@ rs-module h6.rs-layer:before { content: none; }
 
 
 /********************************
-	-	AminifuTED OVERLAYS	-
+	-	aminiTED OVERLAYS	-
 *********************************/
-rs-Aminifuted						{	background-repeat:repeat;width:100%;height:100%;position:absolute;top:0px;left:0px;z-index:3;display:block;pointer-events: none}
-rs-sbg-wrap rs-Aminifuted 			{ z-index: 31 }
-rs-Aminifuted.twoxtwo				{	background:url(../assets/gridtile.png)}
-rs-Aminifuted.twoxtwowhite			{	background:url(../assets/gridtile_white.png)}
-rs-Aminifuted.threexthree			{	background:url(../assets/gridtile_3x3.png)}
-rs-Aminifuted.threexthreewhite		{	background:url(../assets/gridtile_3x3_white.png)}
+rs-aminited						{	background-repeat:repeat;width:100%;height:100%;position:absolute;top:0px;left:0px;z-index:3;display:block;pointer-events: none}
+rs-sbg-wrap rs-aminited 			{ z-index: 31 }
+rs-aminited.twoxtwo				{	background:url(../assets/gridtile.png)}
+rs-aminited.twoxtwowhite			{	background:url(../assets/gridtile_white.png)}
+rs-aminited.threexthree			{	background:url(../assets/gridtile_3x3.png)}
+rs-aminited.threexthreewhite		{	background:url(../assets/gridtile_3x3_white.png)}
 
 
 /******************************
@@ -1204,8 +1204,8 @@ rs-loader.spinner4 {
   animation: tp-rotate 2.0s infinite linear;
 }
 
-rs-loader.spinner4 .Aminifu1,
-rs-loader.spinner4 .Aminifu2 {
+rs-loader.spinner4 .amini1,
+rs-loader.spinner4 .amini2 {
   width: 60%;
   height: 60%;
   display: inline-block;
@@ -1217,7 +1217,7 @@ rs-loader.spinner4 .Aminifu2 {
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
 }
 
-rs-loader.spinner4 .Aminifu2 {
+rs-loader.spinner4 .amini2 {
   top: auto;
   bottom: 0px;
   animation-delay: -1.0s;

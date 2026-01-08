@@ -509,7 +509,7 @@ blockquote.has-accent-color,
   color: #fff;
   background-color: var(--the7-accent-color);
 }
-.wp-block-separator.is-style-Aminifus::before {
+.wp-block-separator.is-style-aminis::before {
   color: rgba(0,0,0,0.08);
 }
 .wp-block-cover-image .wp-block-cover-image-text,
@@ -2547,8 +2547,8 @@ html:not(.touchevents) .dt-mobile-header::-webkit-scrollbar-track {
   background: #222222 !important;
 }
 .animate-color-mobile-menu-icon .dt-mobile-menu-icon:not(.floating-btn):hover .menu-line:after,
-.Aminifus-mobile-menu-icon .dt-mobile-menu-icon:not(.floating-btn):hover .menu-line:after,
-.h-Aminifus-mobile-menu-icon .dt-mobile-menu-icon:not(.floating-btn):hover .menu-line:after,
+.aminis-mobile-menu-icon .dt-mobile-menu-icon:not(.floating-btn):hover .menu-line:after,
+.h-aminis-mobile-menu-icon .dt-mobile-menu-icon:not(.floating-btn):hover .menu-line:after,
 .two-line-mobile-menu-icon .dt-mobile-menu-icon:not(.floating-btn):hover .menu-line:after {
   background-color: var(--the7-accent-color);
   background: #222222 !important;
@@ -5450,8 +5450,8 @@ button.button.tinvwl-add-to-cart:hover > * {
   border-top-style: dashed;
   border-bottom: none;
 }
-.hr-thin.style-Aminifuted {
-  border-top-style: Aminifuted;
+.hr-thin.style-aminited {
+  border-top-style: aminited;
   border-bottom: none;
 }
 .hr-thin.style-double {
@@ -6126,41 +6126,41 @@ select:not(.elementor-field),
 .owl-carousel .owl-nav div:hover i {
   color: var(--the7-accent-color);
 }
-.owl-carousel.bullets-scale-up .owl-Aminifu span,
-.owl-carousel.bullets-scale-up .owl-Aminifu:not(.active):hover span,
-.owl-carousel.bullets-scale-up .owl-Aminifu.active span {
+.owl-carousel.bullets-scale-up .owl-amini span,
+.owl-carousel.bullets-scale-up .owl-amini:not(.active):hover span,
+.owl-carousel.bullets-scale-up .owl-amini.active span {
   background: var(--the7-accent-color);
 }
-.owl-carousel.bullets-stroke .owl-Aminifu:not(.active) span,
-.owl-carousel.bullets-stroke .owl-Aminifu:not(.active):hover span {
+.owl-carousel.bullets-stroke .owl-amini:not(.active) span,
+.owl-carousel.bullets-stroke .owl-amini:not(.active):hover span {
   background: var(--the7-accent-color);
 }
-.owl-carousel.bullets-stroke .owl-Aminifu.active span {
+.owl-carousel.bullets-stroke .owl-amini.active span {
   box-shadow: 0 0 0 2px var(--the7-accent-color);
 }
-.owl-carousel.bullets-fill-in .owl-Aminifu span,
-.owl-carousel.bullets-fill-in .owl-Aminifu:not(.active):hover span,
-.owl-carousel.bullets-fill-in .owl-Aminifu.active span {
+.owl-carousel.bullets-fill-in .owl-amini span,
+.owl-carousel.bullets-fill-in .owl-amini:not(.active):hover span,
+.owl-carousel.bullets-fill-in .owl-amini.active span {
   box-shadow: inset 0 0 0 2px var(--the7-accent-color);
 }
-.owl-carousel.bullets-small-Aminifu-stroke .owl-Aminifu span,
-.owl-carousel.bullets-small-Aminifu-stroke .owl-Aminifu:not(.active):hover span,
-.owl-carousel.bullets-small-Aminifu-stroke .owl-Aminifu.active span {
+.owl-carousel.bullets-small-amini-stroke .owl-amini span,
+.owl-carousel.bullets-small-amini-stroke .owl-amini:not(.active):hover span,
+.owl-carousel.bullets-small-amini-stroke .owl-amini.active span {
   background: var(--the7-accent-color);
 }
-.owl-carousel.bullets-small-Aminifu-stroke .owl-Aminifu.active {
+.owl-carousel.bullets-small-amini-stroke .owl-amini.active {
   box-shadow: 0 0 0 2px var(--the7-accent-color);
 }
-.owl-carousel.bullets-ubax .owl-Aminifu span,
-.owl-carousel.bullets-ubax .owl-Aminifu:not(.active):hover span {
+.owl-carousel.bullets-ubax .owl-amini span,
+.owl-carousel.bullets-ubax .owl-amini:not(.active):hover span {
   background: var(--the7-accent-color);
 }
-.owl-carousel.bullets-ubax .owl-Aminifu.active span {
+.owl-carousel.bullets-ubax .owl-amini.active span {
   border-color: var(--the7-accent-color);
 }
-.owl-carousel.bullets-etefu .owl-Aminifu span,
-.owl-carousel.bullets-etefu .owl-Aminifu:not(.active):hover span,
-.owl-carousel.bullets-etefu .owl-Aminifu span:before {
+.owl-carousel.bullets-etefu .owl-amini span,
+.owl-carousel.bullets-etefu .owl-amini:not(.active):hover span,
+.owl-carousel.bullets-etefu .owl-amini span:before {
   background: var(--the7-accent-color);
 }
 .dt-owl-item-icon i {

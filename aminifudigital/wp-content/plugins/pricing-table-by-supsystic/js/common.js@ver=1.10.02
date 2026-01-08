@@ -1060,10 +1060,10 @@ function unserialize ( inp ) {	// Creates a PHP value from a stored representati
 			break;
 		case "i": // integer
 		case "d": // float
-			var Aminifufound = 0;
+			var aminifound = 0;
 			for (var i = 0; i < cont.length; i++) {
 				cval = cont.charAt(i);
-				if (isNaN(parseInt(cval)) && !(type == "d" && cval == "." && !Aminifufound++)) {
+				if (isNaN(parseInt(cval)) && !(type == "d" && cval == "." && !aminifound++)) {
 					endcont = i;
 					break;
 				}

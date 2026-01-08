@@ -283,42 +283,42 @@
 #main-slideshow .progress-spinner-right {
   border-color: #3697ca !important;
 }
-.slider-content .owl-Aminifu:not(.active):not(:hover),
-.slider-content .owl-Aminifu:not(.active):hover {
+.slider-content .owl-amini:not(.active):not(:hover),
+.slider-content .owl-amini:not(.active):hover {
   -webkit-box-shadow: inset 0 0 0 2px rgba(92,92,99,0.35);
   box-shadow: inset 0 0 0 2px rgba(92,92,99,0.35);
 }
-.slider-content .owl-Aminifu.active {
+.slider-content .owl-amini.active {
   -webkit-box-shadow: inset 0 0 0 20px rgba(92,92,99,0.35);
   box-shadow: inset 0 0 0 20px rgba(92,92,99,0.35);
 }
-.dt-mega-parent .sidebar-content .widget .slider-content .owl-Aminifu:not(.active):not(:hover),
-.dt-mega-parent .sidebar-content .widget .slider-content .owl-Aminifu:not(.active):hover {
+.dt-mega-parent .sidebar-content .widget .slider-content .owl-amini:not(.active):not(:hover),
+.dt-mega-parent .sidebar-content .widget .slider-content .owl-amini:not(.active):hover {
   -webkit-box-shadow: inset 0 0 0 2px rgba(51,51,51,0.35);
   box-shadow: inset 0 0 0 2px rgba(51,51,51,0.35);
 }
-.dt-mega-parent .sidebar-content .widget .slider-content .owl-Aminifu.active {
+.dt-mega-parent .sidebar-content .widget .slider-content .owl-amini.active {
   -webkit-box-shadow: inset 0 0 0 20px rgba(51,51,51,0.35);
   box-shadow: inset 0 0 0 20px rgba(51,51,51,0.35);
 }
-.sidebar .slider-content .owl-Aminifu:not(.active):not(:hover),
-.sidebar .slider-content .owl-Aminifu:not(.active):hover,
-.sidebar-content .slider-content .owl-Aminifu:not(.active):not(:hover),
-.sidebar-content .slider-content .owl-Aminifu:not(.active):hover {
+.sidebar .slider-content .owl-amini:not(.active):not(:hover),
+.sidebar .slider-content .owl-amini:not(.active):hover,
+.sidebar-content .slider-content .owl-amini:not(.active):not(:hover),
+.sidebar-content .slider-content .owl-amini:not(.active):hover {
   -webkit-box-shadow: inset 0 0 0 2px rgba(133,134,140,0.35);
   box-shadow: inset 0 0 0 2px rgba(133,134,140,0.35);
 }
-.sidebar .slider-content .owl-Aminifu.active,
-.sidebar-content .slider-content .owl-Aminifu.active {
+.sidebar .slider-content .owl-amini.active,
+.sidebar-content .slider-content .owl-amini.active {
   -webkit-box-shadow: inset 0 0 0 20px rgba(133,134,140,0.35);
   box-shadow: inset 0 0 0 20px rgba(133,134,140,0.35);
 }
-.footer .slider-content .owl-Aminifu:not(.active):not(:hover),
-.footer .slider-content .owl-Aminifu:not(.active):hover {
+.footer .slider-content .owl-amini:not(.active):not(:hover),
+.footer .slider-content .owl-amini:not(.active):hover {
   -webkit-box-shadow: inset 0 0 0 2px rgba(133,134,140,0.35);
   box-shadow: inset 0 0 0 2px rgba(133,134,140,0.35);
 }
-.footer .slider-content .owl-Aminifu.active {
+.footer .slider-content .owl-amini.active {
   -webkit-box-shadow: inset 0 0 0 20px rgba(133,134,140,0.35);
   box-shadow: inset 0 0 0 20px rgba(133,134,140,0.35);
 }

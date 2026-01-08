@@ -2,13 +2,13 @@
 	<service>
 		<engineName>WordPress</engineName>
 		<engineLink>https://wordpress.org/</engineLink>
-		<homePageLink>https://aminifudigital.co.ke</homePageLink>
+		<homePageLink>https://aminidigital.co.ke</homePageLink>
 		<apis>
-			<api name="WordPress" blogID="1" preferred="true" apiLink="https://aminifudigital.co.ke/xmlrpc.php" />
-			<api name="Movable Type" blogID="1" preferred="false" apiLink="https://aminifudigital.co.ke/xmlrpc.php" />
-			<api name="MetaWeblog" blogID="1" preferred="false" apiLink="https://aminifudigital.co.ke/xmlrpc.php" />
-			<api name="Blogger" blogID="1" preferred="false" apiLink="https://aminifudigital.co.ke/xmlrpc.php" />
-				<api name="WP-API" blogID="1" preferred="false" apiLink="https://aminifudigital.co.ke/wp-json/" />
+			<api name="WordPress" blogID="1" preferred="true" apiLink="https://aminidigital.co.ke/xmlrpc.php" />
+			<api name="Movable Type" blogID="1" preferred="false" apiLink="https://aminidigital.co.ke/xmlrpc.php" />
+			<api name="MetaWeblog" blogID="1" preferred="false" apiLink="https://aminidigital.co.ke/xmlrpc.php" />
+			<api name="Blogger" blogID="1" preferred="false" apiLink="https://aminidigital.co.ke/xmlrpc.php" />
+				<api name="WP-API" blogID="1" preferred="false" apiLink="https://aminidigital.co.ke/wp-json/" />
 			</apis>
 	</service>
 </rsd>
