@@ -1,11 +1,21 @@
+const compression = require('compression');
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 3000;
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, './aminifudigital')));
+// Production mode first
+process.env.NODE_ENV = 'production';
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Middleware order: compression first, then static
+app.use(compression());  // Gzip brotli
+app.use(express.static(path.join(__dirname, 'aminifudigital'), {  // Or your static dir
+  maxAge: '1d',  // Browser cache 1 day
+  etag: true,    // ETags for validation
+  setHeaders: (res, path) => {
+    if (path.endsWith('.js')) res.set('Cache-Control', 'public, max-age=31536000');  // 1 year JS
+    if (path.endsWith('.css')) res.set('Cache-Control', 'public, max-age=31536000');
+  }
+}));
+
+app.listen(3000, '0.0.0.0');
+
